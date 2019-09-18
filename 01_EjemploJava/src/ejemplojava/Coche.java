@@ -1,92 +1,111 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ejemplojava;
 
-/**
- *
- * @author student
- */
-public class Coche {
+public class Coche { 
+
+ 
+    enum TipoColor {BLANCO, NEGRO, ROJO, VERDE, AZUL, PLATEADO};
+    enum TipoCarburante {GASOLINA, DIESEL, ELECTRICO};
     
-    private final byte numRuedas;
-    private String marca;
-    private int capacidadDeposito;
-    private boolean gasolina;
-    private double nivelDeposito;
+    public static final int CAPACIDAD_DEPOSITO = 60;
+    
+    private final byte numRuedas;   // Valor constante por el final
+    private final String marca;
+    //private final boolean esGasolina;
+    private double nivDeposito;
     private boolean arrancado;
-
-    public Coche(String marca, int capacidadDeposito, boolean gasolina) {
-        this.numRuedas=4;
-        this.marca=marca;
-        this.capacidadDeposito=capacidadDeposito;
-        this.gasolina=gasolina;
+    private TipoColor color;
+    private TipoCarburante carburante;
+  
+    public Coche(String marca, TipoColor color, TipoCarburante carburante) {
+        this.numRuedas = 4;
+        this.marca = marca;
+        this.color = color;
+        this.carburante = carburante;
     }
     
-    public void echarCarburante(double cantidad)
-    {
-        if(cantidad >0)
-        {
-            this.nivelDeposito += cantidad;
-        }
-        
-        if(this.nivelDeposito > this.capacidadDeposito)
-        {
-           this.nivelDeposito = this.capacidadDeposito;
-        }
+    public Coche(String marca, String color, TipoCarburante carburante) {
+        this.numRuedas = 4;
+        this.marca = marca;
+        this.color = compruebaColor(color.toUpperCase());//TipoColor.valueOf(color.toUpperCase());
+        this.carburante = carburante;
     }
     
-    public void acelerar()
-    {
-        if(this.arrancado)
-        {
-            this.nivelDeposito -= 0.1;
-        }
-    }
-    
-    public void vaciarDeposito()
-    {
-        this.nivelDeposito=3;
-        System.out.println("Deposito vaciado de " + this.toString());
-    }
-
-    @Override
-    public String toString() {
-        return "Coche{" + "numRuedas=" + numRuedas + ", marca=" + marca + ", capacidadDeposito=" + capacidadDeposito + ", gasolina=" + gasolina + ", nivelDeposito=" + nivelDeposito + '}';
+    public double getNivelDep() {
+        return nivDeposito;
     }
 
     public byte getNumRuedas() {
         return numRuedas;
+    }
+    
+    
+    public void echarCarburante(double cantidad) {
+        if (cantidad > 0)
+            this.nivDeposito += cantidad;
+        
+        if (nivDeposito > CAPACIDAD_DEPOSITO)
+            nivDeposito = CAPACIDAD_DEPOSITO;
+    }
+    
+    public void acelerar() {
+        if (arrancado)
+        {
+            nivDeposito -= 0.1;
+            explosionCilindro();
+        }
+    }
+    
+    public void vaciarDeposito() {
+        // float nivelDeposito = 2;
+        this.nivDeposito = 3;
+        System.out.println("Deposito vaciado de " + this.toString()
+                /*+ "\n   Nivel: " + nivelDeposito*/ );  
+    }
+    public String toString() {
+        return "Coche " + marca + " nivel " + nivDeposito + " color " + color + " carburante " + carburante;
+    }
+    public void mostrar() {
+        System.out.println(this.toString()); 
     }
 
     public String getMarca() {
         return marca;
     }
 
-    public int getCapacidadDeposito() {
-        return capacidadDeposito;
-    }
-
-    public boolean isGasolina() {
-        return gasolina;
-    }
-
-    public double getNivelDeposito() {
-        return nivelDeposito;
-    }
-    
-    public void setNivelDeposito(double nivelDeposito) {
-        this.nivelDeposito = nivelDeposito;
-    }
-
     public boolean isArrancado() {
         return arrancado;
     }
 
+    public double getNivDeposito() {
+        return nivDeposito;
+    }
+
     public void setArrancado(boolean arrancado) {
         this.arrancado = arrancado;
-    }    
+    }
+    
+    private TipoColor compruebaColor(String colorUsuario) {
+        
+        TipoColor colorCoche=TipoColor.BLANCO;
+        
+        try
+        {
+            colorCoche=TipoColor.valueOf(colorUsuario);
+        }
+        catch(Exception e)
+        {
+            System.out.println("El color introducido no esta disponible. Se le asigna el color por defecto(BLANCO)");
+        }
+        return colorCoche;    
+    }
+    
+    protected void explosionCilindro()
+    {
+        System.out.println("Motor funcionando");
+    }
+
+    protected void setNivDeposito(double nivDeposito) {
+        this.nivDeposito = nivDeposito;
+    }
     
 }
