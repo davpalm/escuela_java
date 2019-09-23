@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
+<html><head>
         <title>Calculadora JS</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,38 +10,137 @@
                 width: 40px; height: 40px; border-width: 2px;
             }
             .res {
-                width: 200px; height: 40px; border-width: 2px;
+                width: 175px; height: 40px; border-width: 2px;
             }
         </style>
         <h1>Calculadora JS</h1>
-        <input type="number" id="resultado" class="res" value="0"/>
+        <input id="resultado" class="res" value="0">
+        <div class="fila">  
+            <div id="operstring" class="num"></div>
+        </div>
         <div>
             <div class="fila">  
-                <div class="num" onclick="pulsado('1')">1</div>
-                <div class="num" onclick="pulsado('2')">2</div>
-                <div class="num" onclick="pulsado('3')">3</div></div>
+                <button class="num" onclick="pulsado('1')">1</button>
+                <button class="num" onclick="pulsado('2')">2</button>
+                <button class="num" onclick="pulsado('3')">3</button>
+                <button class="num" onclick="operacion('+')">+</button>
+            </div>
             <div class="fila">  
-                <div class="num">4</div>
-                <div class="num">5</div>
-                <div class="num">6</div></div>
+                <button class="num" onclick="pulsado('4')">4</button>
+                <button class="num" onclick="pulsado('5')">5</button>
+                <button class="num" onclick="pulsado('6')">6</button>
+                <button class="num" onclick="operacion('-')">-</button>
+            </div>
             <div class="fila">  
-                <div class="num">7</div>
-                <div class="num">8</div>
-                <div class="num">9</div></div>
+                <button class="num" onclick="pulsado('7')">7</button>
+                <button class="num" onclick="pulsado('8')">8</button>
+                <button class="num" onclick="pulsado('9')">9</button>
+                <button class="num" onclick="operacion('*')">*</button>
+            </div>
             <div class="fila">  
-                <div class="num">-</div>
-                <div class="num">0</div>
-                <div class="num">.</div></div>
+                <button class="num" onclick="pulsado('-M')">-M</button>
+                <button class="num" onclick="pulsado('0')">0</button>
+                <button class="num" onclick="comprobarPunto('.')">.</button>
+                <button class="num" onclick="operacion('/')">/</button>
+            </div>
+            <div class="fila">  
+                <button class="num" onclick="esIgual()">=</button>
+            </div>
         </div>
         <script>
             let result = document.getElementById("resultado");
-            
+            let stringOp = document.getElementById("operstring");
+            var op = "";
+            var valorUno=0;
+            var valorDos=0;
             function pulsado(valor) {
-                if (valor ==="-")
-                    result.value = - (parseFloat(result.value));
-                else 
+                
+                if (valor === "-M")
+                {
+                    if(result.value!="")
+                    {
+                        result.value = -(parseFloat(result.value));
+                    }
+                }
+                else
+                {
                     result.value += valor;
+                }
+            }
+            
+            function operacion(valor)
+            {
+                switch(valor)
+                {
+                    case "+":
+                        stringOp.innerHTML=result.value + "+";
+                        valorUno=result.value;
+                        op="1";
+                        result.value="";
+                        break;
+                    case "-":
+                        stringOp.innerHTML=result.value + "-"
+                        valorUno=result.value;
+                        op="2";
+                        result.value="";
+                        break;
+                    case "*":
+                        stringOp.innerHTML=result.value + "*"
+                        valorUno=result.value;
+                        op="3";
+                        result.value="";
+                        break;
+                    case "/":
+                        stringOp.innerHTML=result.value + "/"
+                        valorUno=result.value;
+                        op="4";
+                        result.value="";
+                        break;
+                }
+            }
+            
+            function esIgual()
+            {
+                valorUno = parseFloat(valorUno);
+                if(result.value!="")
+                {
+                   valorDos =  parseFloat(result.value);
+                }
+                else
+                {
+                    valorDos=0;
+                }
+                switch(op)
+                {
+                    case "1":
+                        result.value=valorUno + valorDos;
+                        stringOp.innerHTML="";
+                        break;
+                    case "2":
+                        valorDos =  parseFloat(result.value);
+                        result.value=valorUno - valorDos;
+                        stringOp.innerHTML="";
+                        break;
+                    case "3":
+                        result.value=valorUno * valorDos;
+                        stringOp.innerHTML="";
+                        break;
+                    case "4":
+                        result.value=valorUno / valorDos;
+                        stringOp.innerHTML="";
+                        break;
+                }
+            }
+            
+            function comprobarPunto(valor) {
+                
+                if(!result.value.includes("."))
+                {
+                    result.value += valor;
+                }
             }
         </script>
+
+
     </body>
 </html>
