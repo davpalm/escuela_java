@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculadora JS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <style>
+            .num { 
+                display: inline-block;
+                width: 40px; height: 40px; border-width: 2px;
+            }
+            .res {
+                width: 200px; height: 40px; border-width: 2px;
+            }
+        </style>
+        <h1>Calculadora JS</h1>
+        <input type="number" id="resultado" class="res" value="0"/>
+        <div>
+            <div class="fila">  
+                <div class="num" onclick="pulsado('1')">1</div>
+                <div class="num" onclick="pulsado('2')">2</div>
+                <div class="num" onclick="pulsado('3')">3</div></div>
+            <div class="fila">  
+                <div class="num">4</div>
+                <div class="num">5</div>
+                <div class="num">6</div></div>
+            <div class="fila">  
+                <div class="num">7</div>
+                <div class="num">8</div>
+                <div class="num">9</div></div>
+            <div class="fila">  
+                <div class="num">-</div>
+                <div class="num">0</div>
+                <div class="num">.</div></div>
+        </div>
+        <script>
+            let result = document.getElementById("resultado");
+            
+            function pulsado(valor) {
+                if (valor ==="-")
+                    result.value = - (parseFloat(result.value));
+                else 
+                    result.value += valor;
+            }
+        </script>
+    </body>
+</html>

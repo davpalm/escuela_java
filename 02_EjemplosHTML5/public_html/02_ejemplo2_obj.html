@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Ejemplos Obj</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>Ejemplos Obj</div>
+        <script>
+            var valor1 = new Object();
+            var valor2 = {
+                "dni": "9876554-J",
+                'nombre': "Menganito",
+                nacimiento: new Date()
+            }; // Nomenclatura JSON
+            
+            var persona = new Object();
+            persona.dni = "01234567-K";
+            persona.nombre = "Fulanito";
+            persona.edad = 42;
+            persona.nacimiento = new Date();
+           /* window.alert("Info persona 2: " + valor2.nombre
+                    + "\n Edad: " + valor2.edad
+                    + "\n Nacim: " + valor2["nacimiento"]);*/
+            
+            persona["apellidos"] = "De Tal y Tal";
+            
+            window.alert("Info persona: " + persona.nombre
+                    + "\n Apellidos " + persona.apellidos
+                    + "\n Edad: " + persona.edad
+                    + "\n Nacim: " + persona.nacimiento
+                    );
+            
+        </script>
+    </body>
+</html>
