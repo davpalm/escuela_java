@@ -32,3 +32,10 @@ hs_err_pid*
 /03_WebServlets/dist/
 /04_Ejemplo_MVC_JSP/nbproject/private/
 /04_Ejemplo_MVC_JSP/build/
+/05_CRUD_JSTL_DAO/nbproject/private/
+/05_CRUD_Modelo_DAO/nbproject/private/
+/05_CRUD_Modelo_DAO/build/
+/05_CRUD_Vista_JSTL/nbproject/private/
+/05_CRUD_Vista_JSTL/build/
+/05_CRUD_Modelo_DAO/dist/
+/05_CRUD_Vista_JSTL/dist/

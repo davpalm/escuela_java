@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Cliente Rest con Ajax</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Cliente Rest con Ajax</h1>
+        <form id="formJSON">
+            <label for="email">Email: </label>
+            <input id="email" name="email" type="email" placeholder="Write your email"
+                   size="50" maxlength="255" required="required"/><br/>
+            
+            <label for="password">Password: </label>
+            <input id="password" name="password" type="password" placeholder="Write your password"
+                   size="50" maxlength="50" required="required"/><br/>
+            
+            <label for="name">Name: </label>
+            <input id="name" name="name" type="text" placeholder="Write your name"
+                   size="50" maxlength="50" required="required"/><br/>
+            
+            <label for="age">Age: </label>
+            <input id="age" name="age" type="number" placeholder="Write your age"
+                   size="10" maxlength="3" required="required" min="1" max="199"/><br/>
+            
+            <input id="btnPost" type="submit" value="Register please!!! En un plis"/>
+        </form>
+        <table id="data_table"></table>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="js/ajaxRestClient.js"></script>
+    </body>
+</html>
