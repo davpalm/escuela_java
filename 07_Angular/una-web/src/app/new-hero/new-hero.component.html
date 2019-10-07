@@ -1,0 +1,19 @@
+<h1 class="mb-3"> Add New Hero</h1>
+<div class="row">
+    <div class="col-sm-3">
+        <label>Id: </label>
+        <input type="text" id="id" [(ngModel)]="newId" placeholder="Write name..." />
+    </div>
+    <div class="col-sm-3">
+        <label>Name: </label>
+        <input type="text" id="name" [(ngModel)]="newName" placeholder="Write name..." />
+    </div>
+    <div class="col-sm-3">
+        <label>Image: </label>
+        <input type="text" id="image" [(ngModel)]="newImage" placeholder="Write image path ..." />
+    </div>
+    <div class="col-sm-3">
+        <!-- <button (click) = "heroService.addHeroes(name.value, image.value)">Crear</button> -->
+        <button class="btn btn-info" (click)="heroService.add( {id: newId, name: newName, image: newImage} )">Crear</button>
+    </div>
+</div>

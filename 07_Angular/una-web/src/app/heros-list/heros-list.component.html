@@ -1,11 +1,14 @@
 <h1 class="text-center mb-3">Listado de heroes</h1>
-<app-hero-detail [hero]="selectedHero"></app-hero-detail>
+<!-- <app-hero-detail [hero]="selectedHero"></app-hero-detail> -->
 <div class="row">
     <div *ngFor="let hero of heroes" class="card col-sm-3" (click)="onSelect(hero)">
         <img class="img-fluid" src="{{ hero.image }}" />
         <br />
         <div class="card-block text-center mt-2">
             <h4 class="card-title"><!--{{ hero.id }}-->{{ hero.name }}</h4>
+        </div>
+        <div class="text-right">
+            <a routerLink="/detail/{{hero.id}}">ver mas</a>
         </div>
     </div>
 </div>
