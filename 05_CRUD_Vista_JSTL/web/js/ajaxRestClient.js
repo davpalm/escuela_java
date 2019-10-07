@@ -24,9 +24,7 @@ window.onload = function() {
   ajaxObj.send();
 };
 
-
-
-$("#formJSON").submit(function(e) {
+$("#btnPost").click(function(e) {
     e.preventDefault();
     var test = {name: $("#name").val(), email: $("#email").val(), password: $("#password").val(), age: $("#age").val()};
     $.ajax({
@@ -40,3 +38,49 @@ $("#formJSON").submit(function(e) {
         }
     });
 });
+
+$("#btnPut").click(function(e) {
+    e.preventDefault();
+    var test = {name: $("#name").val(), email: $("#email").val(), password: $("#password").val(), age: $("#age").val()};
+    $.ajax({
+        type: 'put', // it's easier to read GET request parameters
+        url: 'api/users',
+        dataType: 'JSON',
+        contentType: "application/json",
+        data: JSON.stringify(test),
+        success: function(data) {
+            alert("ID: " + data.id + "\nNAME: " + data.name + "\nEMAIL: " + data.email + "\nAGE: " + data.age);
+        }
+    });
+});
+
+$("#btnDelete").click(function(e) {
+    e.preventDefault();
+    var test = {email: $("#email").val()};
+    $.ajax({
+        type: 'delete', // it's easier to read GET request parameters
+        url: 'api/users',
+        dataType: 'JSON',
+        contentType: "application/json",
+        data: JSON.stringify(test),
+        success: function(data) {
+            
+        }
+    });
+});
+
+
+//$("#formJSON").submit(function(e) {
+//    e.preventDefault();
+//    var test = {name: $("#name").val(), email: $("#email").val(), password: $("#password").val(), age: $("#age").val()};
+//    $.ajax({
+//        type: 'post', // it's easier to read GET request parameters
+//        url: 'api/users',
+//        dataType: 'JSON',
+//        contentType: "application/json",
+//        data: JSON.stringify(test),
+//        success: function(data) {
+//            alert("ID: " + data.id + "\nNAME: " + data.name + "\nEMAIL: " + data.email + "\nAGE: " + data.age);
+//        }
+//    });
+//});

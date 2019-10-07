@@ -74,4 +74,35 @@ public class UsersRestController extends HttpServlet {
                     + ex.getMessage() + "\"}");
         }
     }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String json = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        Gson gson = new Gson();
+        User user = gson.fromJson(json, User.class);
+        try {
+            User userJson = userSrv.update(userSrv.getOneByEmail(user.getEmail()).getId(), user.getEmail(), user.getPassword(), user.getName(), String.valueOf(user.getAge()));
+            String usertext = gson.toJson(userJson);
+            resp.getWriter().print(usertext);
+        } catch (SQLException ex) {
+            Logger.getLogger(UsersRestController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String json = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        Gson gson = new Gson();
+        User user = gson.fromJson(json, User.class);
+        
+        try {
+            userSrv.remove(userSrv.getOneByEmail(user.getEmail()).getId());
+        } catch (SQLException ex) {
+            Logger.getLogger(UsersRestController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    
+    
 }

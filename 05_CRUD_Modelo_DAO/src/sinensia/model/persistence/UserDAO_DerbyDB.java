@@ -70,6 +70,7 @@ public class UserDAO_DerbyDB implements IUserDAO {
         return user;
     }
 
+    @Override
     public User getOneByEmail(String email) throws SQLException {
         try (Connection con = DriverManager.getConnection(CONEX_DB, USER_DB, PSSWD_DB)) {
             String sqlQueryBusqId = "SELECT id, password, name, age FROM users WHERE email=?";

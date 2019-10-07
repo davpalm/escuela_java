@@ -1,0 +1,12 @@
+
+<div class="row justify-content-center mb-4">
+<div *ngIf="hero" class="border col-sm-3">
+    <!-- Solo se crea si hero tiene algun valor -->
+    <h2 class="text-center">{{ hero.name | uppercase }} details</h2>
+    <div><span>Id: </span>{{ hero.id }}</div>
+    <div>
+        <label>Name: </label>
+        <input [(ngModel)]="hero.name" placeholder="Write the name"/>
+    </div>
+</div>
+</div>

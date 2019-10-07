@@ -5,6 +5,10 @@
  */
 package sinensia.model.logic;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import sinensia.model.User;
@@ -78,6 +82,10 @@ public class UserService {
             u = daoUsers.update(u);
         }
         return u;
+    }
+    
+    public User getOneByEmail(String email) throws SQLException {
+        return daoUsers.getOneByEmail(email);
     }
     
     public User getValidUser(String email, String password) throws SQLException{
